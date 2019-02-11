@@ -55,4 +55,10 @@ describe Oystercard do
     @card.touch_in(station)
     expect(@card.entry_station).to eq station
   end
+
+  it "forgets the entry station on touch out" do
+    @card.touch_in(station)
+    @card.touch_out
+    expect(@card.entry_station).to eq(nil)
+  end
 end

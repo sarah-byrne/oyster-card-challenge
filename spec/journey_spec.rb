@@ -8,6 +8,6 @@ describe Journey do
   end
 
   it "Exit is nil at the start of the jouney" do
-    expect(subject.exit).to be_empty
+    expect(subject.exit).to eq(nil)
   end
 end

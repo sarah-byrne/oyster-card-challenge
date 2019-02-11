@@ -20,4 +20,8 @@ describe Journey do
     subject.end(station)
     expect(subject.fare).to eq Journey::MIN_FARE
   end
+
+  it "calculates fare as the penalty fare if journey info incomplete" do
+    expect(subject.fare).to eq Journey::PENALTY_FARE
+  end
 end

@@ -33,4 +33,9 @@ describe Journey do
   it "knows whether it is in middle of a journey" do
     expect(subject.in_journey?).to eq(true)
   end
+
+  it "knows it is not in a journey after completion" do
+    subject.end(station)
+    expect(subject.in_journey?).to eq(false)
+  end 
 end

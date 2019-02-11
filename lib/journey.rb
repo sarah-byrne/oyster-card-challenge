@@ -15,4 +15,9 @@ class Journey
     return PENALTY_FARE if exit.nil? || entry.nil?
     MIN_FARE
   end
+
+  def in_journey?
+    return true if !@entry.nil? && @exit.nil?
+    false
+  end
 end

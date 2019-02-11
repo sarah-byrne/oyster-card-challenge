@@ -70,6 +70,13 @@ describe Oystercard do
   end
 
   it "has an empty list of journeys by default" do
-    expect(@card.journeys).to be_empty 
+    expect(@card.journeys).to be_empty
   end
+
+  it "Records the entry and exit stations after touch_out in journeys" do
+    @card.touch_in(station)
+    @card.touch_out(station2)
+    expect(@card.journeys).to include {entry: station, exit: station2}
+  end
+  
 end

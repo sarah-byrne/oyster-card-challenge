@@ -15,4 +15,9 @@ describe Journey do
     subject.end(station)
     expect(subject.exit).to eq station
   end
+
+  it "Calculates a fare based on the stations" do
+    subject.end(station)
+    expect(subject.fare).to eq Journey::MINFARE
+  end
 end

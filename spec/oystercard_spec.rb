@@ -20,6 +20,6 @@ describe Oystercard do
 
   it "raises an error if topping up goes over the limit" do
     card = Oystercard.new
-    expect { card.top_up(91) }.to raise_error("will take card over balance limit") 
+    expect { card.top_up(Oystercard::LIMIT + 1) }.to raise_error("will take card over balance limit #{Oystercard::LIMIT}")
   end
 end

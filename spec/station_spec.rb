@@ -1,13 +1,13 @@
 require 'station'
 
 describe Station do
+
+  subject {described_class.new("Paddington", 1)}
   it "has a name" do
-    station = Station.new("Paddington", 1)
-    expect(station.name).to eq("Paddington")
+    expect(subject.name).to eq("Paddington")
   end
 
   it "has a zone" do
-    station = Station.new("Paddington", 1)
-    expect(station.zone).to eq(2)
+    expect(subject.zone).to eq(1)
   end
 end

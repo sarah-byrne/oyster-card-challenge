@@ -27,6 +27,10 @@ describe Journey do
 
   it "Returns a hash containg the entry and exit stations" do
     subject.end(station)
-    expect(subject.end).to eq({entry: station, exit: station})
+    expect(subject.end(station)).to eq({entry: station, exit: station})
+  end
+
+  it "knows whether it is in middle of a journey" do
+    expect(subject.in_journey?).to eq(true)
   end
 end

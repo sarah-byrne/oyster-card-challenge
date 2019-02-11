@@ -53,4 +53,10 @@ describe Oystercard do
   it "Dosen't let you touch in when you have less then 1 balance" do
     expect { @card.touch_in }.to raise_error("Not enough money for a single journey")
   end
+
+  it "deducts minimum fare from balance when touching out" do
+    @card.top_up(10)
+    @card.touch_in
+    expect { @card.touch_out }.to change{ @card.balance }.by(- Oystercard::MIN)
+  end
 end

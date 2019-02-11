@@ -19,8 +19,8 @@ describe Oystercard do
   end
 
   it "raises an error if topping up goes over the limit" do
-    message = "will take card over balance limit #{Oystercard::LIMIT}"
-    expect { @card.top_up(Oystercard::LIMIT + 1) }.to raise_error(message)
+    message = "will take card over balance limit #{Oystercard::MAX}"
+    expect { @card.top_up(Oystercard::MAX + 1) }.to raise_error(message)
   end
 
   it "deducts 4 from balance for a long fare" do
@@ -40,6 +40,7 @@ describe Oystercard do
   end
 
   it "is in a journey after touching in" do
+    @card.top_up(10)
     @card.touch_in
     expect(@card.in_journey?).to eq(true)
   end
@@ -50,6 +51,6 @@ describe Oystercard do
   end
 
   it "Dosen't let you touch in when you have less then 1 balance" do
-    expect { card.touch_in }.to raise_error("Not enough money for a single journey")
+    expect { @card.touch_in }.to raise_error("Not enough money for a single journey")
   end
 end

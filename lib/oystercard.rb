@@ -1,14 +1,16 @@
 class Oystercard
   attr_reader :balance
-  LIMIT = 90
+  MAX = 90
+  MIN = 1
+  
   def initialize
     @balance = 0
     @journey = false
   end
 
   def top_up(amount)
-    message = "will take card over balance limit #{LIMIT}"
-    fail message if @balance + amount > LIMIT
+    message = "will take card over balance limit #{MAX}"
+    fail message if @balance + amount > MAX
     @balance += amount
   end
 
@@ -17,6 +19,8 @@ class Oystercard
   end
 
   def touch_in
+    fail "Not enough money for a single journey" if @balance < MIN
+
     @journey = true
   end
 

@@ -48,4 +48,8 @@ describe Oystercard do
     @card.touch_out
     expect(@card.in_journey?).to eq(false)
   end
+
+  it "Dosen't let you touch in when you have less then 1 balance" do
+    expect { card.touch_in }.to raise_error("Not enough money for a single journey")
+  end
 end

@@ -1,6 +1,8 @@
 require "oystercard"
 
 describe Oystercard do
+  let(:station) {double :station}
+
   before :each do
     @card = Oystercard.new
     @card.top_up(10)
@@ -30,7 +32,7 @@ describe Oystercard do
   end
 
   it "is in a journey after touching in" do
-    @card.touch_in
+    @card.touch_in(station)
     expect(@card.in_journey?).to eq(true)
   end
 
@@ -41,16 +43,16 @@ describe Oystercard do
 
   it "Dosen't let you touch in when you have less then 1 balance" do
     card = Oystercard.new
-    expect { card.touch_in }.to raise_error("Not enough money for a single journey")
+    expect { card.touch_in(station) }.to raise_error("Not enough money for a single journey")
   end
 
   it "deducts minimum fare from balance when touching out" do
-    @card.touch_in
+    @card.touch_in(station)
     expect { @card.touch_out }.to change{ @card.balance }.by(- Oystercard::MIN)
   end
 
   it "Logs the current station on touch in" do
-    @card.touch_in(:Algate_East)
-    expect(@card.entry_station).to eq :Algate_East
+    @card.touch_in(station)
+    expect(@card.entry_station).to eq station
   end
 end

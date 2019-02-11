@@ -68,4 +68,8 @@ describe Oystercard do
     @card.touch_out(station2)
     expect(@card.exit_station).to eq station2
   end
+
+  it "has an empty list of journeys by default" do
+    expect(@card.journeys).to be_empty 
+  end
 end

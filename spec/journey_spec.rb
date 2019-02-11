@@ -24,4 +24,9 @@ describe Journey do
   it "calculates fare as the penalty fare if journey info incomplete" do
     expect(subject.fare).to eq Journey::PENALTY_FARE
   end
+
+  it "Returns a hash containg the entry and exit stations" do
+    subject.end(station)
+    expect(subject.end).to eq({entry: station, exit: station})
+  end
 end

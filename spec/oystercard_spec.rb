@@ -52,21 +52,10 @@ describe Oystercard do
     expect { @card.touch_out(station2) }.to change{ @card.balance }.by(- Oystercard::MIN)
   end
 
-  it "Logs the entrance station on touch in" do
-    @card.touch_in(station)
-    expect(@card.entry_station).to eq station
-  end
-
   it "forgets the entry station on touch out" do
     @card.touch_in(station)
     @card.touch_out(station2)
     expect(@card.entry_station).to eq(nil)
-  end
-
-  it "Logs the exit station on touch out" do
-    @card.touch_in(station)
-    @card.touch_out(station2)
-    expect(@card.exit_station).to eq station2
   end
 
   it "has an empty list of journeys by default" do
@@ -76,7 +65,7 @@ describe Oystercard do
   it "Records the entry and exit stations after touch_out in journeys" do
     @card.touch_in(station)
     @card.touch_out(station2)
-    expect(@card.journeys).to include {entry: station, exit: station2}
+    expect(@card.journeys).to include({entry: station, exit: station2})
   end
-  
+
 end

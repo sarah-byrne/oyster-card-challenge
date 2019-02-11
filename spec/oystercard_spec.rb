@@ -2,6 +2,7 @@ require "oystercard"
 
 describe Oystercard do
   let(:station) {double :station}
+  let(:station2) {double :station2}
 
   before :each do
     @card = Oystercard.new
@@ -51,7 +52,7 @@ describe Oystercard do
     expect { @card.touch_out }.to change{ @card.balance }.by(- Oystercard::MIN)
   end
 
-  it "Logs the current station on touch in" do
+  it "Logs the entrance station on touch in" do
     @card.touch_in(station)
     expect(@card.entry_station).to eq station
   end
@@ -60,5 +61,11 @@ describe Oystercard do
     @card.touch_in(station)
     @card.touch_out
     expect(@card.entry_station).to eq(nil)
+  end
+
+  it "Logs the exit station on touch out" do
+    @card.touch_in(station)
+    @card.touch_out(station2)
+    expect(@card.exit_station).to eq station2
   end
 end

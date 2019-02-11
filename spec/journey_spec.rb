@@ -7,7 +7,12 @@ describe Journey do
     expect(subject.entry).to eq station
   end
 
-  it "Exit is nil at the start of the jouney" do
+  it "Exit is nil at the start of the journey" do
     expect(subject.exit).to eq(nil)
+  end
+
+  it "stores an exit station" do
+    subject.end(station)
+    expect(subject.exit).to eq station
   end
 end

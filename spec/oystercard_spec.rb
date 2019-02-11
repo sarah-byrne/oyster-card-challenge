@@ -38,7 +38,7 @@ describe Oystercard do
   end
 
   it "is not in a journey after touching out" do
-    @card.touch_out
+    @card.touch_out(station)
     expect(@card.in_journey?).to eq(false)
   end
 
@@ -49,7 +49,7 @@ describe Oystercard do
 
   it "deducts minimum fare from balance when touching out" do
     @card.touch_in(station)
-    expect { @card.touch_out }.to change{ @card.balance }.by(- Oystercard::MIN)
+    expect { @card.touch_out(station2) }.to change{ @card.balance }.by(- Oystercard::MIN)
   end
 
   it "Logs the entrance station on touch in" do
@@ -59,7 +59,7 @@ describe Oystercard do
 
   it "forgets the entry station on touch out" do
     @card.touch_in(station)
-    @card.touch_out
+    @card.touch_out(station2)
     expect(@card.entry_station).to eq(nil)
   end
 
